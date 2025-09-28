@@ -1,0 +1,116 @@
+/**
+ * CSS Variables per il sistema di theming
+ * 
+ * Questo approccio utilizza CSS Custom Properties (CSS Variables) per gestire i temi
+ * invece di ricrearre completamente il tema Material-UI ad ogni cambio.
+ * 
+ * Vantaggi delle CSS Variables:
+ * - Performance migliore (no re-render completo)
+ * - Più semplice da capire per gli studenti
+ * - Supporto browser nativo
+ * - Facile da estendere
+ * 
+ * Documentazione CSS Variables: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
+ */
+
+/* Tema Light (default) */
+:root {
+  /* Colori principali */
+  --primary-color: #1976d2;
+  --primary-light: #42a5f5;
+  --primary-dark: #1565c0;
+  --secondary-color: #dc004e;
+  
+  /* Colori di background */
+  --background-default: #ffffff;
+  --background-paper: #ffffff;
+  --background-secondary: #f5f5f5;
+  
+  /* Colori del testo */
+  --text-primary: rgba(0, 0, 0, 0.87);
+  --text-secondary: rgba(0, 0, 0, 0.6);
+  --text-disabled: rgba(0, 0, 0, 0.38);
+  
+  /* Colori di stato */
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+  --info-color: #2196f3;
+  
+  /* Ombre e bordi */
+  --shadow-light: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0px 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-heavy: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  
+  --border-color: rgba(0, 0, 0, 0.12);
+  --divider-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Tema Dark */
+[data-theme="dark"] {
+  /* Colori principali */
+  --primary-color: #90caf9;
+  --primary-light: #bbdefb;
+  --primary-dark: #42a5f5;
+  
+  /* Colori di background */
+  --background-default: #121212;
+  --background-paper: #1e1e1e;
+  --background-secondary: #2a2a2a;
+  
+  /* Colori del testo */
+  --text-primary: rgba(255, 255, 255, 0.87);
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --text-disabled: rgba(255, 255, 255, 0.38);
+  
+  /* Colori di stato */
+  --success-color: #66bb6a;
+  --warning-color: #ffb74d;
+  --error-color: #ef5350;
+  --info-color: #64b5f6;
+  
+  /* Ombre e bordi */
+  --shadow-light: 0px 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-medium: 0px 4px 8px rgba(0, 0, 0, 0.4);
+  --shadow-heavy: 0px 8px 16px rgba(0, 0, 0, 0.5);
+  
+  --border-color: rgba(255, 255, 255, 0.12);
+  --divider-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Stili base che utilizzano le variabili */
+body {
+  background-color: var(--background-default);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Classi utility per usare i colori del tema */
+.theme-background {
+  background-color: var(--background-default);
+}
+
+.theme-paper {
+  background-color: var(--background-paper);
+}
+
+.theme-text-primary {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-primary {
+  color: var(--primary-color);
+}
+
+.theme-shadow {
+  box-shadow: var(--shadow-medium);
+}
+
+/* Transizioni smooth per il cambio tema */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

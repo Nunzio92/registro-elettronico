@@ -1,0 +1,265 @@
+{
+  "studenti": [
+    {
+      "id": 1,
+      "username": "studente",
+      "password": "password",
+      "nome": "Mario",
+      "cognome": "Rossi",
+      "classe": "5A",
+      "email": "mario.rossi@scuola.it",
+      "dataNascita": "2005-03-15",
+      "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Mario"
+    },
+    {
+      "id": 2,
+      "username": "prof",
+      "password": "password",
+      "nome": "Anna",
+      "cognome": "Bianchi",
+      "ruolo": "professore",
+      "materie": ["Matematica", "Fisica"],
+      "email": "anna.bianchi@scuola.it"
+    }
+  ],
+  "materie": [
+    {
+      "id": 1,
+      "nome": "Matematica",
+      "codice": "MAT",
+      "professore": "Prof.ssa Bianchi",
+      "professorId": 2,
+      "aula": "A12",
+      "oreSettimanali": 4,
+      "colore": "#1976d2",
+      "icona": "calculate",
+      "descrizione": "Algebra, geometria e analisi matematica"
+    },
+    {
+      "id": 2,
+      "nome": "Italiano",
+      "codice": "ITA",
+      "professore": "Prof. Verdi",
+      "professorId": 3,
+      "aula": "B05",
+      "oreSettimanali": 5,
+      "colore": "#2e7d32",
+      "icona": "book",
+      "descrizione": "Letteratura, grammatica e scrittura"
+    },
+    {
+      "id": 3,
+      "nome": "Inglese",
+      "codice": "ENG",
+      "professore": "Prof. Johnson",
+      "professorId": 4,
+      "aula": "C03",
+      "oreSettimanali": 3,
+      "colore": "#1565c0",
+      "icona": "language",
+      "descrizione": "Lingua e letteratura inglese"
+    },
+    {
+      "id": 4,
+      "nome": "Scienze",
+      "codice": "SCI",
+      "professore": "Prof.ssa Verde",
+      "professorId": 5,
+      "aula": "LAB1",
+      "oreSettimanali": 4,
+      "colore": "#388e3c",
+      "icona": "science",
+      "descrizione": "Biologia, chimica e fisica"
+    },
+    {
+      "id": 5,
+      "nome": "Storia",
+      "codice": "STO",
+      "professore": "Prof. Romano",
+      "professorId": 6,
+      "aula": "A08",
+      "oreSettimanali": 3,
+      "colore": "#5d4037",
+      "icona": "history_edu",
+      "descrizione": "Storia contemporanea e antica"
+    }
+  ],
+  "voti": [
+    {
+      "id": 1,
+      "studenteId": 1,
+      "materiaId": 1,
+      "voto": 8.5,
+      "data": "2024-01-15",
+      "tipo": "scritto",
+      "descrizione": "Verifica equazioni di secondo grado",
+      "peso": 1
+    },
+    {
+      "id": 2,
+      "studenteId": 1,
+      "materiaId": 2,
+      "voto": 7.0,
+      "data": "2024-01-14",
+      "tipo": "orale",
+      "descrizione": "Interrogazione su Dante - Inferno",
+      "peso": 1
+    },
+    {
+      "id": 3,
+      "studenteId": 1,
+      "materiaId": 5,
+      "voto": 9.0,
+      "data": "2024-01-12",
+      "tipo": "scritto",
+      "descrizione": "Tema sulla Prima Guerra Mondiale",
+      "peso": 1.5
+    },
+    {
+      "id": 4,
+      "studenteId": 1,
+      "materiaId": 1,
+      "voto": 6.5,
+      "data": "2024-01-10",
+      "tipo": "pratico",
+      "descrizione": "Esercizi alla lavagna",
+      "peso": 0.5
+    },
+    {
+      "id": 5,
+      "studenteId": 1,
+      "materiaId": 3,
+      "voto": 8.0,
+      "data": "2024-01-08",
+      "tipo": "orale",
+      "descrizione": "Reading comprehension",
+      "peso": 1
+    }
+  ],
+  "compiti": [
+    {
+      "id": 1,
+      "materiaId": 3,
+      "titolo": "Esercizi pagina 45-47",
+      "descrizione": "Completare gli esercizi di grammatica sui tempi verbali",
+      "dataAssegnazione": "2024-01-16",
+      "dataConsegna": "2024-01-20",
+      "tipo": "esercizi",
+      "completato": false,
+      "studenteId": 1
+    },
+    {
+      "id": 2,
+      "materiaId": 4,
+      "titolo": "Relazione esperimento",
+      "descrizione": "Scrivere una relazione sull'esperimento di osmosi",
+      "dataAssegnazione": "2024-01-15",
+      "dataConsegna": "2024-01-22",
+      "tipo": "relazione",
+      "completato": false,
+      "studenteId": 1
+    },
+    {
+      "id": 3,
+      "materiaId": 1,
+      "titolo": "Problemi di geometria",
+      "descrizione": "Risolvere i problemi dal 15 al 25 del capitolo sui triangoli",
+      "dataAssegnazione": "2024-01-14",
+      "dataConsegna": "2024-01-18",
+      "tipo": "esercizi",
+      "completato": true,
+      "studenteId": 1
+    }
+  ],
+  "assenze": [
+    {
+      "id": 1,
+      "studenteId": 1,
+      "data": "2024-01-11",
+      "tipo": "malattia",
+      "ore": "intera_giornata",
+      "giustificata": true,
+      "motivazione": "Influenza"
+    },
+    {
+      "id": 2,
+      "studenteId": 1,
+      "data": "2024-01-09",
+      "tipo": "ritardo",
+      "ore": "1",
+      "giustificata": true,
+      "motivazione": "Trasporti pubblici"
+    }
+  ],
+  "comunicazioni": [
+    {
+      "id": 1,
+      "titolo": "Riunione genitori",
+      "contenuto": "Si comunica che venerdì 26 gennaio si terrà la riunione con i genitori.",
+      "data": "2024-01-18",
+      "tipo": "generale",
+      "letta": false,
+      "mittente": "Segreteria"
+    },
+    {
+      "id": 2,
+      "titolo": "Verifica di Matematica",
+      "contenuto": "La verifica di matematica è stata posticipata a lunedì 29 gennaio.",
+      "data": "2024-01-17",
+      "tipo": "didattica",
+      "letta": true,
+      "mittente": "Prof.ssa Bianchi"
+    },
+    {
+      "id": 3,
+      "titolo": "Gita scolastica",
+      "contenuto": "Autorizzazione richiesta per la gita a Roma del 15 febbraio.",
+      "data": "2024-01-16",
+      "tipo": "evento",
+      "letta": false,
+      "mittente": "Prof. Verdi"
+    }
+  ],
+  "orario": [
+    {
+      "id": 1,
+      "giorno": "lunedì",
+      "ora": 1,
+      "materiaId": 1,
+      "aula": "A12",
+      "professore": "Prof.ssa Bianchi"
+    },
+    {
+      "id": 2,
+      "giorno": "lunedì",
+      "ora": 2,
+      "materiaId": 1,
+      "aula": "A12",
+      "professore": "Prof.ssa Bianchi"
+    },
+    {
+      "id": 3,
+      "giorno": "lunedì",
+      "ora": 3,
+      "materiaId": 2,
+      "aula": "B05",
+      "professore": "Prof. Verdi"
+    },
+    {
+      "id": 4,
+      "giorno": "lunedì",
+      "ora": 4,
+      "materiaId": 3,
+      "aula": "C03",
+      "professore": "Prof. Johnson"
+    },
+    {
+      "id": 5,
+      "giorno": "martedì",
+      "ora": 1,
+      "materiaId": 4,
+      "aula": "LAB1",
+      "professore": "Prof.ssa Verde"
+    }
+  ]
+}
