@@ -1,17 +1,12 @@
 /**
- * Componente LoginForm - Form per l'autenticazione utente
+ * 🎯 TASK: Implementa il form di login
  * 
- * Implementa un form di login con Material-UI che gestisce:
- * - Input controllati per username e password
- * - Validazione delle credenziali
- * - Gestione degli errori
- * - Integrazione con AuthContext
- * 
- * Concetti React utilizzati:
- * - Controlled Components: https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
- * - Event Handling: https://react.dev/learn/responding-to-events
- * - Forms: https://react.dev/reference/react-dom/components/form
- * - Programmatic Navigation: https://reactrouter.com/en/main/hooks/use-navigate
+ * Dovrai:
+ * 1. Creare state per credenziali e errori
+ * 2. Implementare form controllati
+ * 3. Gestire submit e validazione
+ * 4. Integrare con AuthContext
+ * 5. Navigazione dopo login
  */
 
 import React, { useState, useEffect } from 'react';
@@ -25,152 +20,99 @@ import {
   Container
 } from '@mui/material';
 import { School as SchoolIcon } from '@mui/icons-material';
-import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+// 🎯 TASK: Importa useAuth e useNavigate
+// import { useAuth } from '../contexts/AuthContext';
+// import { useNavigate } from 'react-router-dom';
 
-/**
- * Componente funzionale LoginForm
- * 
- * Utilizza il pattern di Controlled Components per gestire gli input del form
- */
 const LoginForm = () => {
-  // State per memorizzare le credenziali inserite dall'utente
-  // Oggetto con username e password - stato locale del componente
-  const [credentials, setCredentials] = useState({ username: '', password: '' });
+  // 🎯 TASK: State per le credenziali
+  // const [credentials, setCredentials] = useState({ username: '', password: '' });
   
-  // State per gestire i messaggi di errore
-  const [error, setError] = useState('');
+  // 🎯 TASK: State per errori
+  // const [error, setError] = useState('');
   
-  // Hook personalizzato per accedere alle funzioni di autenticazione
-  const { login, isAuthenticated } = useAuth();
-  
-  // Hook per la navigazione programmatica tra le pagine
-  // useNavigate permette di cambiare pagina via codice (non click utente)
-  const navigate = useNavigate();
+  // 🎯 TASK: Hook per auth e navigazione
+  // const { login, isAuthenticated } = useAuth();
+  // const navigate = useNavigate();
 
-  /**
-   * Effect per reindirizzare utenti già autenticati
-   * 
-   * Se l'utente è già loggato e prova ad accedere al login,
-   * viene automaticamente reindirizzato alla dashboard
-   */
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/dashboard');
-    }
-  }, [isAuthenticated, navigate]);
+  // 🎯 TASK: useEffect per redirect se già loggato
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     navigate('/dashboard');
+  //   }
+  // }, [isAuthenticated, navigate]);
 
-  /**
-   * Event handler per i cambiamenti nei campi input
-   * 
-   * Utilizza il pattern del nome dell'input per aggiornare lo stato
-   * corrispondente nell'oggetto credentials
-   * 
-   * @param {Event} e - Event object dal form
-   */
+  // 🎯 TASK: Handler per cambiamenti input
   const handleChange = (e) => {
-    setCredentials({
-      ...credentials,  // Spread operator per mantenere gli altri valori
-      [e.target.name]: e.target.value  // Computed property name
-    });
+    // 🎯 TASK: Aggiorna state credentials
+    console.log('handleChange non implementato - Segui la guida step-by-step!');
   };
 
-  /**
-   * Event handler per la sottomissione del form
-   * 
-   * Previene il comportamento predefinito del browser e gestisce
-   * la logica di login chiamando la funzione dal context.
-   * Se il login ha successo, naviga automaticamente alla dashboard.
-   * 
-   * @param {Event} e - Event object dal form
-   */
+  // 🎯 TASK: Handler per submit
   const handleSubmit = (e) => {
-    e.preventDefault();  // Previene il reload della pagina
-    setError('');        // Reset dell'errore precedente
-    
-    // Chiamata alla funzione di login dal context
-    const result = login(credentials.username, credentials.password);
-    
-    if (result.success) {
-      // Login riuscito - naviga alla dashboard
-      navigate('/dashboard');
-    } else {
-      // Login fallito - mostra errore
-      setError(result.error);
-    }
+    // 🎯 TASK: preventDefault, chiamata login, gestione risultato
+    e.preventDefault();
+    console.log('handleSubmit non implementato - Segui la guida step-by-step!');
   };
 
-  /**
-   * Render del componente LoginForm
-   * 
-   * Struttura JSX che crea un form centrato con Material-UI
-   * Ogni campo input è "controllato" (controlled component)
-   */
   return (
-    // Container Material-UI per centrare il contenuto
     <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        {/* Paper crea l'effetto "carta" con ombra */}
+      <Box sx={{
+        marginTop: 8,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}>
         <Paper elevation={3} sx={{ padding: 4, width: '100%' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {/* Icona della scuola */}
             <SchoolIcon sx={{ fontSize: 40, mb: 2, color: 'primary.main' }} />
             
-            {/* Titolo principale */}
             <Typography component="h1" variant="h4" gutterBottom>
               Registro Elettronico
             </Typography>
             
-            {/* Sottotitolo */}
             <Typography variant="body2" color="textSecondary" align="center" sx={{ mb: 3 }}>
               Accedi con le tue credenziali
             </Typography>
             
-            {/* Form con onSubmit handler */}
+            {/* 🎯 TASK: Implementa il form completo */}
             <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
-              {/* Campo username - Controlled Component */}
+              
+              {/* 🎯 TASK: Campo username */}
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="username"
                 label="Nome utente"
-                name="username"        // Nome che corrisponde allo state
-                autoComplete="username"
+                name="username"
                 autoFocus
-                value={credentials.username}  // Valore dallo state
-                onChange={handleChange}       // Handler per aggiornare lo state
+                // value={credentials.username}
+                // onChange={handleChange}
+                placeholder="🎯 TASK: Collega al state"
+                helperText="Implementa useState per gestire questo campo"
               />
               
-              {/* Campo password - Controlled Component */}
+              {/* 🎯 TASK: Campo password */}
               <TextField
                 margin="normal"
                 required
                 fullWidth
-                name="password"       // Nome che corrisponde allo state
+                name="password"
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
-                value={credentials.password}  // Valore dallo state
-                onChange={handleChange}       // Handler per aggiornare lo state
+                // value={credentials.password}
+                // onChange={handleChange}
+                placeholder="🎯 TASK: Collega al state"
+                helperText="Implementa useState per gestire questo campo"
               />
               
-              {/* Rendering condizionale dell'errore */}
-              {error && (
-                <Alert severity="error" sx={{ mt: 2 }}>
-                  {error}
-                </Alert>
-              )}
+              {/* 🎯 TASK: Alert per errori */}
+              <Alert severity="info" sx={{ mt: 2 }}>
+                🎯 TASK: Implementa gestione errori con useState
+              </Alert>
               
-              {/* Button di submit */}
               <Button
                 type="submit"
                 fullWidth
@@ -180,7 +122,6 @@ const LoginForm = () => {
                 Accedi
               </Button>
               
-              {/* Testo informativo con credenziali demo */}
               <Typography variant="body2" color="textSecondary" align="center">
                 Credenziali demo: studente / password
               </Typography>

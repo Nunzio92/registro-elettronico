@@ -1,16 +1,12 @@
 /**
- * Componente Dashboard - Pagina principale del registro elettronico
+ * 🎯 TASK: Implementa la dashboard principale
  * 
- * Mostra una panoramica delle informazioni più importanti per lo studente:
- * - Statistiche principali (voti, compiti, presenza)
- * - Ultimi voti ricevuti
- * - Compiti in scadenza
- * 
- * Concetti React utilizzati:
- * - Functional Components: https://react.dev/learn/your-first-component
- * - Props destructuring e composizione
- * - Map per rendering di liste: https://react.dev/learn/rendering-lists
- * - Conditional rendering: https://react.dev/learn/conditional-rendering
+ * Dovrai:
+ * 1. Creare dati mock per voti e compiti
+ * 2. Implementare componente StatCard riutilizzabile
+ * 3. Creare grid responsive per le statistiche
+ * 4. Renderizzare liste di voti e compiti con map()
+ * 5. Aggiungere logica per colori condizionali
  */
 
 import React from 'react';
@@ -31,76 +27,67 @@ import {
   Announcement as AnnouncementIcon
 } from '@mui/icons-material';
 
-/**
- * Componente funzionale Dashboard
- * 
- * Utilizza dati mock per simulare le informazioni del registro
- * In un'app reale, questi dati arriverebbero da API calls
- */
 const Dashboard = () => {
-  // Dati simulati per il registro elettronico
-  // In un'app reale, questi verrebbero da uno state management o API
+  // 🎯 TASK: Crea dati mock
   const mockData = {
     voti: [
-      { materia: 'Matematica', voto: 8, data: '2024-01-15' },
-      { materia: 'Italiano', voto: 7, data: '2024-01-14' },
-      { materia: 'Storia', voto: 9, data: '2024-01-12' }
+      // 🎯 TASK: Aggiungi array di voti con materia, voto, data
+      // Esempio: { materia: 'Matematica', voto: 8, data: '2024-01-15' }
     ],
     compiti: [
-      { materia: 'Inglese', descrizione: 'Esercizi pagina 45-47', scadenza: '2024-01-20' },
-      { materia: 'Scienze', descrizione: 'Relazione esperimento', scadenza: '2024-01-22' }
+      // 🎯 TASK: Aggiungi array di compiti con materia, descrizione, scadenza
+      // Esempio: { materia: 'Inglese', descrizione: 'Esercizi pagina 45-47', scadenza: '2024-01-20' }
     ]
   };
 
-  /**
-   * Componente StatCard - Card riutilizzabile per le statistiche
-   * 
-   * Esempio di componente riutilizzabile che accetta props
-   * per mostrare diversi tipi di statistiche
-   * 
-   * @param {string} title - Titolo della statistica
-   * @param {string|number} value - Valore da mostrare
-   * @param {React.ReactNode} icon - Icona da mostrare
-   * @param {string} color - Colore del tema Material-UI
-   */
+  // 🎯 TASK: Componente StatCard riutilizzabile
   const StatCard = ({ title, value, icon, color = 'primary' }) => (
     <Card sx={{ height: '100%' }}>
       <CardContent>
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Box>
-            <Typography color="textSecondary" gutterBottom variant="h6">
-              {title}
-            </Typography>
-            <Typography variant="h4" component="div">
-              {value}
-            </Typography>
-          </Box>
-          <Box sx={{ color: `${color}.main` }}>
-            {icon}
-          </Box>
+        {/* 🎯 TASK: Implementa layout della card */}
+        <Box sx={{ p: 2, textAlign: 'center' }}>
+          <Typography color="textSecondary" gutterBottom>
+            🎯 TASK: {title}
+          </Typography>
+          <Typography variant="h4" component="div">
+            {value}
+          </Typography>
+          <Typography variant="body2">
+            Implementa il layout completo!
+          </Typography>
         </Box>
       </CardContent>
     </Card>
   );
 
-  /**
-   * Render della Dashboard
-   * 
-   * Utilizza Material-UI Grid per layout responsive e 
-   * map() per renderizzare liste di elementi dinamicamente
-   */
+  // 🎯 TASK: Calcola media voti
+  // const mediaVoti = mockData.voti.reduce(...) / mockData.voti.length;
+
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
         Dashboard Studente
       </Typography>
       
-      {/* Grid delle statistiche principali */}
+      {/* Messaggio informativo */}
+      <Box sx={{ mb: 3, p: 2, backgroundColor: '#f3e5f5', borderRadius: 2 }}>
+        <Typography variant="body1" color="primary">
+          🎯 <strong>TASK Dashboard:</strong> Segui la guida step-by-step per implementare:
+        </Typography>
+        <ul>
+          <li>Dati mock per voti e compiti</li>
+          <li>Componente StatCard riutilizzabile</li>
+          <li>Grid responsive per statistiche</li>
+          <li>Liste dinamiche con map()</li>
+        </ul>
+      </Box>
+      
+      {/* 🎯 TASK: Grid delle statistiche */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Media Voti"
-            value="8.0"
+            value="🎯 TASK"
             icon={<GradeIcon sx={{ fontSize: 40 }} />}
             color="success"
           />
@@ -108,7 +95,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Compiti"
-            value={mockData.compiti.length}  // Utilizzo di .length per contare
+            value="🎯 TASK"
             icon={<AssignmentIcon sx={{ fontSize: 40 }} />}
             color="warning"
           />
@@ -116,7 +103,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Ore Presenza"
-            value="156/160"
+            value="🎯 TASK"
             icon={<ScheduleIcon sx={{ fontSize: 40 }} />}
             color="info"
           />
@@ -124,14 +111,14 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
             title="Comunicazioni"
-            value="3"
+            value="🎯 TASK"
             icon={<AnnouncementIcon sx={{ fontSize: 40 }} />}
             color="error"
           />
         </Grid>
       </Grid>
 
-      {/* Sezione con voti e compiti */}
+      {/* 🎯 TASK: Sezione voti e compiti */}
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <Card>
@@ -139,30 +126,16 @@ const Dashboard = () => {
               <Typography variant="h6" gutterBottom>
                 Ultimi Voti
               </Typography>
-              {/* 
-                Esempio di map() per renderizzare una lista
-                https://react.dev/learn/rendering-lists 
-              */}
-              {mockData.voti.map((voto, index) => (
-                <Box key={index} display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
-                  <Typography variant="body1">{voto.materia}</Typography>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    {/* Conditional rendering basato sul voto */}
-                    <Chip
-                      label={voto.voto}
-                      color={voto.voto >= 8 ? 'success' : voto.voto >= 6 ? 'primary' : 'error'}
-                      size="small"
-                    />
-                    <Typography variant="body2" color="textSecondary">
-                      {voto.data}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
+              {/* 🎯 TASK: Map per renderizzare voti */}
+              <Box sx={{ p: 2, backgroundColor: '#fff3e0', borderRadius: 1 }}>
+                <Typography variant="body2">
+                  🎯 TASK: Implementa lista voti con map()
+                </Typography>
+                <Typography variant="caption">
+                  Usa mockData.voti.map() per renderizzare i voti
+                </Typography>
+              </Box>
             </CardContent>
-            <CardActions>
-              <Button size="small">Vedi tutti i voti</Button>
-            </CardActions>
           </Card>
         </Grid>
 
@@ -172,22 +145,16 @@ const Dashboard = () => {
               <Typography variant="h6" gutterBottom>
                 Compiti in Scadenza
               </Typography>
-              {/* Altro esempio di map() per rendering di liste */}
-              {mockData.compiti.map((compito, index) => (
-                <Box key={index} sx={{ mb: 2 }}>
-                  <Typography variant="subtitle1">{compito.materia}</Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {compito.descrizione}
-                  </Typography>
-                  <Typography variant="caption" color="warning.main">
-                    Scadenza: {compito.scadenza}
-                  </Typography>
-                </Box>
-              ))}
+              {/* 🎯 TASK: Map per renderizzare compiti */}
+              <Box sx={{ p: 2, backgroundColor: '#fff3e0', borderRadius: 1 }}>
+                <Typography variant="body2">
+                  🎯 TASK: Implementa lista compiti con map()
+                </Typography>
+                <Typography variant="caption">
+                  Usa mockData.compiti.map() per renderizzare i compiti
+                </Typography>
+              </Box>
             </CardContent>
-            <CardActions>
-              <Button size="small">Vedi tutti i compiti</Button>
-            </CardActions>
           </Card>
         </Grid>
       </Grid>

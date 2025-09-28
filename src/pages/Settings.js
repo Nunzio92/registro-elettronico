@@ -1,3 +1,12 @@
+/**
+ * 🎯 TASK: Implementa la pagina impostazioni
+ * 
+ * Dovrai:
+ * 1. Integrare con ThemeContext
+ * 2. Creare switch per toggle tema
+ * 3. Mostrare informazioni app
+ */
+
 import React from 'react';
 import {
   Typography,
@@ -6,7 +15,6 @@ import {
   FormControlLabel,
   Switch,
   Box,
-  Divider,
   List,
   ListItem,
   ListItemText,
@@ -16,16 +24,25 @@ import {
   DarkMode as DarkModeIcon,
   LightMode as LightModeIcon
 } from '@mui/icons-material';
-import { useTheme } from '../contexts/ThemeContext';
+// 🎯 TASK: Importa useTheme
+// import { useTheme } from '../contexts/ThemeContext';
 
 const Settings = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
+  // 🎯 TASK: Usa ThemeContext
+  // const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <Box>
       <Typography variant="h4" gutterBottom>
         Impostazioni
       </Typography>
+      
+      {/* Messaggio informativo */}
+      <Box sx={{ mb: 3, p: 2, backgroundColor: '#e8f5e8', borderRadius: 2 }}>
+        <Typography variant="body1" color="success.main">
+          🎯 <strong>TASK Settings:</strong> Implementa l'integrazione con ThemeContext per il toggle del tema!
+        </Typography>
+      </Box>
       
       <Card>
         <CardContent>
@@ -36,46 +53,52 @@ const Settings = () => {
             <ListItem>
               <ListItemText
                 primary="Tema Scuro"
-                secondary="Attiva il tema scuro per ridurre l'affaticamento degli occhi"
+                secondary="🎯 TASK: Implementa toggle tema con ThemeContext"
               />
               <ListItemSecondaryAction>
+                {/* 🎯 TASK: Switch per tema */}
                 <FormControlLabel
                   control={
-                    <Switch
-                      checked={isDarkMode}
-                      onChange={toggleTheme}
+                    <Switch 
+                      // checked={isDarkMode}
+                      // onChange={toggleTheme}
+                      disabled
                       icon={<LightModeIcon />}
                       checkedIcon={<DarkModeIcon />}
                     />
                   }
-                  label=""
+                  label="🎯 TASK: Collega al ThemeContext"
                 />
               </ListItemSecondaryAction>
             </ListItem>
           </List>
           
-          <Divider sx={{ my: 2 }} />
-          
-          <Typography variant="h6" gutterBottom>
-            Informazioni
+          <Typography variant="h6" gutterBottom sx={{ mt: 3 }}>
+            Informazioni App
           </Typography>
           <List>
             <ListItem>
               <ListItemText
-                primary="Versione App"
-                secondary="1.0.0"
+                primary="Versione"
+                secondary="1.0.0 - Sviluppata da te nel corso React!"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                primary="Ultimo Aggiornamento"
-                secondary="Gennaio 2024"
+                primary="Tecnologie"
+                secondary="React + Material-UI + CSS Variables + Context API"
               />
             </ListItem>
             <ListItem>
               <ListItemText
-                primary="Sviluppato con"
-                secondary="React + Material-UI"
+                primary="Stato Implementazione"
+                secondary="🎯 TASK: Completa tutti gli step per vedere ✅ qui!"
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText
+                primary="Prossimi Step"
+                secondary="Segui GUIDA_IMPLEMENTAZIONE_STEP_BY_STEP.md per completare l'app"
               />
             </ListItem>
           </List>

@@ -1,77 +1,55 @@
 /**
- * Componente principale dell'applicazione Registro Elettronico
+ * 🎯 TASK: Implementa il componente App principale
  * 
- * Questo file configura:
- * - Routing dell'applicazione con React Router
- * - Context Providers per stato globale (autenticazione e tema)
- * - Struttura generale dell'app
- * 
- * Documentazione React: https://react.dev/learn
- * React Router: https://reactrouter.com/en/main/start/tutorial
+ * Dovrai:
+ * 1. Importare tutti i componenti necessari
+ * 2. Configurare il routing con React Router
+ * 3. Wrappare con i Provider (Theme e Auth)
+ * 4. Creare le rotte protette e pubbliche
  */
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContextAPI';
-import { CustomThemeProvider } from './contexts/ThemeContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import Layout from './components/Layout';
-import LoginForm from './components/LoginForm';
-import Dashboard from './pages/Dashboard';
-import Settings from './pages/Settings';
-import ThemeExample from './components/ThemeExample';
+// 🎯 TASK: Importa BrowserRouter, Routes, Route, Navigate da 'react-router-dom'
 
-/**
- * Componente App - Root component dell'applicazione
- * 
- * Pattern utilizzato: Provider Pattern per condividere stato globale
- * https://react.dev/reference/react/createContext#provider
- */
+// 🎯 TASK: Importa i Context Provider che creerai
+// import { CustomThemeProvider } from './contexts/ThemeContext';
+// import { AuthProvider } from './contexts/AuthContext';
+
+// 🎯 TASK: Importa i componenti che creerai
+// import ProtectedRoute from './components/ProtectedRoute';
+// import Layout from './components/Layout';
+// import LoginForm from './components/LoginForm';
+// import Dashboard from './pages/Dashboard';
+// import Settings from './pages/Settings';
+
+// Componente temporaneo per iniziare
+const TemporaryWelcome = () => (
+  <div style={{ padding: '20px', textAlign: 'center' }}>
+    <h1>🚀 Benvenuto nel Corso React!</h1>
+    <p>Inizia implementando i componenti seguendo la guida step-by-step</p>
+    <p><strong>Primo step:</strong> Crea il componente Benvenuto</p>
+    <div style={{ marginTop: '20px', padding: '15px', backgroundColor: '#f0f8ff', borderRadius: '8px' }}>
+      <h3>📚 Le tue guide:</h3>
+      <ul style={{ textAlign: 'left', display: 'inline-block' }}>
+        <li><strong>GUIDA_IMPLEMENTAZIONE_STEP_BY_STEP.md</strong> - La tua guida principale</li>
+        <li><strong>CHEAT_SHEET_REACT.md</strong> - Riferimento rapido</li>
+        <li><strong>GUIDA_APPRENDIMENTO_2_GIORNI.md</strong> - Piano del corso</li>
+      </ul>
+    </div>
+  </div>
+);
+
 function App() {
+  // 🎯 TASK: Sostituisci questo return con la struttura completa:
+  // - CustomThemeProvider (esterno)
+  // - AuthProvider  
+  // - Router
+  // - Routes con rotte pubbliche e protette
+  
   return (
-    // CustomThemeProvider: Gestisce il tema dark/light dell'app
-    <CustomThemeProvider>
-      {/* AuthProvider: Gestisce l'autenticazione dell'utente */}
-      <AuthProvider>
-        {/* Router: Abilita la navigazione tra pagine */}
-        <Router>
-          {/* Routes: Definisce le rotte dell'applicazione */}
-          <Routes>
-            {/* Rotta pubblica per il login */}
-            <Route path="/login" element={<LoginForm />} />
-            
-            {/* Rotte protette - richiedono autenticazione */}
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Layout>
-                  <Dashboard />
-                </Layout>
-              </ProtectedRoute>
-            } />
-            
-            <Route path="/settings" element={
-              <ProtectedRoute>
-                <Layout>
-                  <Settings />
-                </Layout>
-              </ProtectedRoute>
-            } />
-            
-            {/* Rotta per esempi CSS Variables */}
-            <Route path="/theme-example" element={
-              <ProtectedRoute>
-                <Layout>
-                  <ThemeExample />
-                </Layout>
-              </ProtectedRoute>
-            } />
-            
-            {/* Redirect automatico alla dashboard */}
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          </Routes>
-        </Router>
-      </AuthProvider>
-    </CustomThemeProvider>
+    <div>
+      <TemporaryWelcome />
+    </div>
   );
 }
 
