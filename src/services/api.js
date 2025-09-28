@@ -1,11 +1,9 @@
 /**
- * Servizio API per comunicare con il backend
+ * Servizio API semplificato per il corso React
  * 
- * Questo file centralizza tutte le chiamate API per:
- * - Evitare duplicazione di codice
- * - Gestire configurazioni comuni (base URL, headers)
- * - Gestire errori in modo consistente
- * - Facilitare testing e mocking
+ * Questo file contiene solo le funzioni essenziali per:
+ * - Autenticazione (login)
+ * - Gestione errori base
  * 
  * Concetti utilizzati:
  * - Fetch API: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
@@ -13,7 +11,7 @@
  * - Error Handling: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
  */
 
-// Base URL del backend - in produzione sarà diverso
+// Base URL del backend
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 /**
@@ -26,9 +24,9 @@ const defaultOptions = {
 };
 
 /**
- * Wrapper per fetch con gestione errori automatica
+ * Wrapper semplificato per fetch con gestione errori
  * 
- * @param {string} url - URL relativo (es. '/api/voti')
+ * @param {string} url - URL relativo (es. '/auth/login')
  * @param {object} options - Opzioni fetch personalizzate
  * @returns {Promise} Promise con dati o errore
  */
@@ -73,202 +71,12 @@ const apiRequest = async (url, options = {}) => {
  * 
  * @param {string} username - Nome utente
  * @param {string} password - Password
- * @returns {Promise<object>} Dati utente e token
+ * @returns {Promise<object>} Dati utente
  */
 export const login = async (username, password) => {
   return apiRequest('/auth/login', {
     method: 'POST',
     body: JSON.stringify({ username, password }),
-  });
-};
-
-// =============================================================================
-// DASHBOARD API - Dati aggregati
-// =============================================================================
-
-/**
- * Ottiene dati dashboard per uno studente
- * 
- * @param {number} studenteId - ID dello studente
- * @returns {Promise<object>} Statistiche e dati dashboard
- */
-export const getDashboardData = async (studenteId) => {
-  return apiRequest(`/dashboard/${studenteId}`);
-};
-
-// =============================================================================
-// STUDENTI API
-// =============================================================================
-
-/**
- * Ottiene lista di tutti gli studenti
- */
-export const getStudenti = async () => {
-  return apiRequest('/api/studenti');
-};
-
-/**
- * Ottiene dettagli di uno studente specifico
- */
-export const getStudente = async (id) => {
-  return apiRequest(`/api/studenti/${id}`);
-};
-
-// =============================================================================
-// MATERIE API
-// =============================================================================
-
-/**
- * Ottiene lista di tutte le materie
- */
-export const getMaterie = async () => {
-  return apiRequest('/api/materie');
-};
-
-/**
- * Ottiene materia specifica
- */
-export const getMateria = async (id) => {
-  return apiRequest(`/api/materie/${id}`);
-};
-
-// =============================================================================
-// VOTI API - CRUD completo
-// =============================================================================
-
-/**
- * Ottiene tutti i voti di uno studente
- * 
- * @param {number} studenteId - ID dello studente
- * @param {object} filtri - Filtri opzionali (materia, tipo, etc.)
- * @returns {Promise<Array>} Lista voti
- */
-export const getVoti = async (studenteId, filtri = {}) => {
-  const params = new URLSearchParams({ 
-    studenteId: studenteId.toString(),
-    ...filtri 
-  });
-  return apiRequest(`/api/voti?${params}`);
-};
-
-/**
- * Ottiene voti con informazioni complete delle materie
- */
-export const getVotiCompleti = async (studenteId) => {
-  return apiRequest(`/voti-completi/${studenteId}`);
-};
-
-/**
- * Aggiunge un nuovo voto
- * 
- * @param {object} voto - Dati del voto da aggiungere
- * @returns {Promise<object>} Voto creato
- */
-export const addVoto = async (voto) => {
-  return apiRequest('/api/voti', {
-    method: 'POST',
-    body: JSON.stringify(voto),
-  });
-};
-
-/**
- * Aggiorna un voto esistente
- * 
- * @param {number} id - ID del voto
- * @param {object} voto - Dati aggiornati
- * @returns {Promise<object>} Voto aggiornato
- */
-export const updateVoto = async (id, voto) => {
-  return apiRequest(`/api/voti/${id}`, {
-    method: 'PUT',
-    body: JSON.stringify(voto),
-  });
-};
-
-/**
- * Elimina un voto
- * 
- * @param {number} id - ID del voto da eliminare
- * @returns {Promise<object>} Conferma eliminazione
- */
-export const deleteVoto = async (id) => {
-  return apiRequest(`/api/voti/${id}`, {
-    method: 'DELETE',
-  });
-};
-
-// =============================================================================
-// COMPITI API
-// =============================================================================
-
-/**
- * Ottiene compiti di uno studente
- * 
- * @param {number} studenteId - ID dello studente
- * @param {boolean} completato - Filtro per stato completamento
- * @returns {Promise<Array>} Lista compiti
- */
-export const getCompiti = async (studenteId, completato = null) => {
-  const params = new URLSearchParams({ studenteId: studenteId.toString() });
-  if (completato !== null) {
-    params.append('completato', completato.toString());
-  }
-  return apiRequest(`/api/compiti?${params}`);
-};
-
-/**
- * Aggiunge un nuovo compito
- */
-export const addCompito = async (compito) => {
-  return apiRequest('/api/compiti', {
-    method: 'POST',
-    body: JSON.stringify(compito),
-  });
-};
-
-/**
- * Marca un compito come completato/non completato
- * 
- * @param {number} id - ID del compito
- * @param {boolean} completato - Stato di completamento
- * @returns {Promise<object>} Compito aggiornato
- */
-export const toggleCompitoCompletato = async (id, completato) => {
-  return apiRequest(`/api/compiti/${id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({ completato }),
-  });
-};
-
-// =============================================================================
-// ASSENZE API
-// =============================================================================
-
-/**
- * Ottiene assenze di uno studente
- */
-export const getAssenze = async (studenteId) => {
-  return apiRequest(`/api/assenze?studenteId=${studenteId}`);
-};
-
-// =============================================================================
-// COMUNICAZIONI API
-// =============================================================================
-
-/**
- * Ottiene tutte le comunicazioni
- */
-export const getComunicazioni = async () => {
-  return apiRequest('/api/comunicazioni');
-};
-
-/**
- * Marca una comunicazione come letta
- */
-export const marcaComunicazioneLetta = async (id) => {
-  return apiRequest(`/api/comunicazioni/${id}`, {
-    method: 'PATCH',
-    body: JSON.stringify({ letta: true }),
   });
 };
 
@@ -298,88 +106,33 @@ export const getErrorMessage = (error) => {
   return error.message || 'Si è verificato un errore imprevisto.';
 };
 
-/**
- * Hook personalizzato per gestire loading states (da usare con React)
- * 
- * Esempio di utilizzo:
- * const { data, loading, error, refetch } = useApi(() => getVoti(1));
- */
-export const createApiHook = (apiFunction) => {
-  return (...args) => {
-    const [data, setData] = React.useState(null);
-    const [loading, setLoading] = React.useState(true);
-    const [error, setError] = React.useState(null);
-
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const result = await apiFunction(...args);
-        setData(result);
-      } catch (err) {
-        setError(getErrorMessage(err));
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    React.useEffect(() => {
-      fetchData();
-    }, []);
-
-    return { data, loading, error, refetch: fetchData };
-  };
-};
-
 // =============================================================================
 // ESEMPI PER GLI STUDENTI
 // =============================================================================
 
 /*
-ESEMPI DI UTILIZZO NEI COMPONENTI:
+ESEMPIO DI UTILIZZO NEL COMPONENTE LOGIN:
 
-1. LOGIN:
 ```jsx
-import { login } from '../services/api';
+import { login, getErrorMessage } from '../services/api';
 
 const handleLogin = async (username, password) => {
   try {
     const result = await login(username, password);
-    // Gestire successo
+    // Login riuscito - gestire successo
+    console.log('Login successful:', result);
   } catch (error) {
-    // Gestire errore
+    // Login fallito - gestire errore
+    const errorMessage = getErrorMessage(error);
+    console.error('Login failed:', errorMessage);
   }
 };
 ```
 
-2. CARICAMENTO VOTI:
-```jsx
-import { getVoti } from '../services/api';
-
-useEffect(() => {
-  const fetchVoti = async () => {
-    try {
-      const voti = await getVoti(studenteId);
-      setVoti(voti);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-  fetchVoti();
-}, [studenteId]);
-```
-
-3. AGGIUNGERE VOTO:
-```jsx
-import { addVoto } from '../services/api';
-
-const handleAggiungiVoto = async (nuovoVoto) => {
-  try {
-    const votoCreato = await addVoto(nuovoVoto);
-    setVoti([...voti, votoCreato]);
-  } catch (error) {
-    alert('Errore: ' + error.message);
-  }
-};
-```
+NOTA: Questo file è stato semplificato per il corso base.
+In futuro potrai aggiungere altre funzioni API come:
+- getVoti() per ottenere i voti
+- getCompiti() per ottenere i compiti
+- addVoto() per aggiungere voti
+- etc.
 */

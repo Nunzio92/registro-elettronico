@@ -696,170 +696,52 @@ export default Layout;
 
 ---
 
-### 🎯 Step 8: Dashboard - Componente Complesso (60 min)
+### 🎯 Step 8: Dashboard Semplificata (15 min)
 
-**Obiettivo**: Creare la dashboard con statistiche e dati
+**Obiettivo**: Creare una dashboard base che mostra il titolo principale
 
 **File da implementare**: `src/pages/Dashboard.js`
 
 ```jsx
-// 🎯 TASK: Implementa la Dashboard completa
+// 🎯 TASK: Implementa la Dashboard semplificata
 import React from 'react';
-import {
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardActions,
-  Button,
-  Box,
-  Chip
-} from '@mui/material';
-import {
-  Assignment as AssignmentIcon,
-  Grade as GradeIcon,
-  Schedule as ScheduleIcon,
-  Announcement as AnnouncementIcon
-} from '@mui/icons-material';
+import { Typography, Box } from '@mui/material';
 
 const Dashboard = () => {
-  // 🎯 TASK: Dati mock per la dashboard
-  const mockData = {
-    voti: [
-      { materia: 'Matematica', voto: 8, data: '2024-01-15' },
-      { materia: 'Italiano', voto: 7, data: '2024-01-14' },
-      { materia: 'Storia', voto: 9, data: '2024-01-12' },
-      { materia: 'Inglese', voto: 6, data: '2024-01-10' }
-    ],
-    compiti: [
-      { materia: 'Inglese', descrizione: 'Esercizi pagina 45-47', scadenza: '2024-01-20' },
-      { materia: 'Scienze', descrizione: 'Relazione esperimento', scadenza: '2024-01-22' },
-      { materia: 'Matematica', descrizione: 'Problemi geometria', scadenza: '2024-01-25' }
-    ]
-  };
-
-  // 🎯 TASK: Componente StatCard riutilizzabile
-  const StatCard = ({ title, value, icon, color = 'primary' }) => (
-    <Card sx={{ height: '100%' }}>
-      <CardContent>
-        <Box display="flex" alignItems="center" justifyContent="space-between">
-          <Box>
-            <Typography color="textSecondary" gutterBottom variant="h6">
-              {title}
-            </Typography>
-            <Typography variant="h4" component="div">
-              {value}
-            </Typography>
-          </Box>
-          <Box sx={{ color: `${color}.main` }}>
-            {icon}
-          </Box>
-        </Box>
-      </CardContent>
-    </Card>
-  );
-
-  // 🎯 TASK: Calcola media voti
-  const mediaVoti = mockData.voti.reduce((sum, voto) => sum + voto.voto, 0) / mockData.voti.length;
-
   return (
-    <Box>
-      <Typography variant="h4" gutterBottom>
-        Dashboard Studente
-      </Typography>
-      
-      {/* 🎯 TASK: Grid delle statistiche */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="Media Voti"
-            value={mediaVoti.toFixed(1)}
-            icon={<GradeIcon sx={{ fontSize: 40 }} />}
-            color="success"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="Compiti"
-            value={mockData.compiti.length}
-            icon={<AssignmentIcon sx={{ fontSize: 40 }} />}
-            color="warning"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="Ore Presenza"
-            value="156/160"
-            icon={<ScheduleIcon sx={{ fontSize: 40 }} />}
-            color="info"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <StatCard
-            title="Comunicazioni"
-            value="3"
-            icon={<AnnouncementIcon sx={{ fontSize: 40 }} />}
-            color="error"
-          />
-        </Grid>
-      </Grid>
-
-      {/* 🎯 TASK: Sezione voti e compiti */}
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Ultimi Voti
-              </Typography>
-              {/* 🎯 TASK: Map per renderizzare voti */}
-              {mockData.voti.map((voto, index) => (
-                <Box key={index} display="flex" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
-                  <Typography variant="body1">{voto.materia}</Typography>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    <Chip
-                      label={voto.voto}
-                      color={voto.voto >= 8 ? 'success' : voto.voto >= 6 ? 'primary' : 'error'}
-                      size="small"
-                    />
-                    <Typography variant="body2" color="textSecondary">
-                      {voto.data}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
-            </CardContent>
-            <CardActions>
-              <Button size="small">Vedi tutti i voti</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Compiti in Scadenza
-              </Typography>
-              {/* 🎯 TASK: Map per renderizzare compiti */}
-              {mockData.compiti.map((compito, index) => (
-                <Box key={index} sx={{ mb: 2 }}>
-                  <Typography variant="subtitle1">{compito.materia}</Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {compito.descrizione}
-                  </Typography>
-                  <Typography variant="caption" color="warning.main">
-                    Scadenza: {compito.scadenza}
-                  </Typography>
-                </Box>
-              ))}
-            </CardContent>
-            <CardActions>
-              <Button size="small">Vedi tutti i compiti</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      </Grid>
+    <Box sx={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      minHeight: '60vh',
+      textAlign: 'center'
+    }}>
+      <div>
+        <Typography 
+          variant="h2" 
+          component="h1" 
+          sx={{ 
+            fontWeight: 'bold',
+            color: 'primary.main',
+            mb: 2
+          }}
+        >
+          DASHBOARD
+        </Typography>
+        <Typography 
+          variant="h6" 
+          color="textSecondary"
+        >
+          Benvenuto nella tua dashboard del registro elettronico
+        </Typography>
+        <Typography 
+          variant="body2" 
+          color="textSecondary"
+          sx={{ mt: 1 }}
+        >
+          Questa pagina potrà essere espansa in futuro con statistiche e funzionalità avanzate
+        </Typography>
+      </div>
     </Box>
   );
 };
@@ -868,9 +750,15 @@ export default Dashboard;
 ```
 
 **🎯 TASK per te:**
-1. Crea il file `src/pages/Dashboard.js`
-2. Implementa seguendo i commenti `🎯 TASK`
-3. Aggiorna `App.js` per importare la Dashboard vera
+1. Sostituisci il contenuto di `src/pages/Dashboard.js` con il codice sopra
+2. Testa che la dashboard mostri il titolo "DASHBOARD" centrato
+3. Verifica che la navigazione funzioni correttamente
+
+**💡 Nota**: Questa è una versione semplificata della dashboard. In futuro potrai espanderla con:
+- Statistiche e grafici
+- Liste di voti e compiti
+- Notifiche e comunicazioni
+- Widget personalizzabili
 
 ---
 
