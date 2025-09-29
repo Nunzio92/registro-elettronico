@@ -5,7 +5,7 @@ Implementa un sistema di autenticazione basilare usando React, Material-UI e chi
 
 ---
 
-## 🚀 **Setup Rapido (2 minuti)**
+## 🚀 **Setup Rapido**
 
 ```bash
 # 1. Clone del progetto
@@ -53,7 +53,7 @@ src/
 
 ## 🚀 **Piano di Implementazione**
 
-### **Step 0: Customizzazione Tema Material-UI (30 min)** 🎨
+### **Step 0: Customizzazione Tema Material-UI** 🎨
 Prima di iniziare con la logica, familiarizza con la personalizzazione dell'interfaccia:
 
 1. **Esplora il file `src/theme.js`** - Contiene il tema Material-UI personalizzato
@@ -71,31 +71,38 @@ Prima di iniziare con la logica, familiarizza con la personalizzazione dell'inte
 
 ---
 
-### **Step 1: API Service - Chiamate Backend (1-2 ore)**
+### **Step 1: LoginForm - Form Base**
+1. Importare [`useState`](https://react.dev/reference/react/useState), [`Paper`](https://mui.com/material-ui/react-paper/), [`TextField`](https://mui.com/material-ui/react-text-field/), [`Button`](https://mui.com/material-ui/react-button/)
+2. Aggiungere stato: `const [formData, setFormData] = useState({ username: '', password: '' })`
+3. Implementare [`handleInputChange`](https://react.dev/learn/reacting-to-input-with-state) per aggiornare lo stato
+4. Creare form JSX con Paper, TextField per username/password e Button
+5. **Test:** Verificare che i campi si aggiornino digitando
+
+### **Step 2: API Service - Chiamate Backend**
 1. Definire [`API_BASE_URL`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) in `api.js`
 2. Implementare funzione [`login`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) con fetch POST
 3. Implementare [`getErrorMessage`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) per gestione errori
-4. Testare con credenziali corrette/sbagliate
+4. **Test:** Usare `console.log` nel form per testare la funzione login
 
-### **Step 2: App.js - Gestione Stato (1-2 ore)**
+### **Step 3: Collegare Form e API**
+1. Importare `login`, `getErrorMessage` da `../services/api` nel LoginForm
+2. Aggiungere stato per errori: `const [error, setError] = useState('')`
+3. Implementare `handleSubmit` che chiama `login(formData.username, formData.password)`
+4. Aggiungere componente [`Alert`](https://mui.com/material-ui/react-alert/) per mostrare errori
+5. **Test:** Provare login con credenziali corrette/sbagliate
+
+### **Step 4: App.js - Gestione Stato**
 1. Importare [`useState`](https://react.dev/reference/react/useState), `LoginForm`, `WelcomePage`
 2. Aggiungere: `const [user, setUser] = useState(null)`
 3. Implementare `handleLogin` e `handleLogout`
 4. Sostituire `<Welcome />` con [conditional rendering](https://react.dev/learn/conditional-rendering)
 
-### **Step 3: LoginForm - Form Controllato (2-3 ore)**
-1. Importare [`useState`](https://react.dev/reference/react/useState), [`Paper`](https://mui.com/material-ui/react-paper/), [`TextField`](https://mui.com/material-ui/react-text-field/), [`Button`](https://mui.com/material-ui/react-button/), [`Alert`](https://mui.com/material-ui/react-alert/)
-2. Importare `login`, `getErrorMessage` da `../services/api`
-3. Aggiungere stati: `formData`, `error`
-4. Implementare [`handleInputChange`](https://react.dev/learn/reacting-to-input-with-state) e `handleSubmit`
-5. Creare form JSX con Paper, TextField, Alert e Button
-
-### **Step 4: WelcomePage - Area Riservata (1 ora)**
+### **Step 5: WelcomePage - Area Riservata**
 1. Importare [`Paper`](https://mui.com/material-ui/react-paper/), [`Button`](https://mui.com/material-ui/react-button/), [`Box`](https://mui.com/material-ui/react-box/) da MUI
 2. Mostrare `user.nome`, `user.cognome`, `user.classe` con Typography
 3. Implementare pulsante logout con Button
 
-### **Step 5: Test Completo (30 min)**
+### **Step 6: Test Completo**
 - Login errato → errore
 - Login corretto → WelcomePage
 - Logout → torna al LoginForm
@@ -122,13 +129,3 @@ Prima di iniziare con la logica, familiarizza con la personalizzazione dell'inte
 - [Try/Catch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch) - Gestione errori
 - [Destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) - Destrutturazione
 
-## ⏱️ **Tempo Stimato**
-
-**5.5-7.5 ore** per principianti (1-2 giorni di lavoro)
-
-- **Step 0 (Tema):** 30 min
-- **Step 1 (API):** 1-2 ore
-- **Step 2 (App.js):** 1-2 ore  
-- **Step 3 (LoginForm):** 2-3 ore
-- **Step 4 (WelcomePage):** 1 ora
-- **Step 5 (Test):** 30 min
