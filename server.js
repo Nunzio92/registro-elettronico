@@ -13,9 +13,7 @@
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults({
-  static: './public'
-});
+const middlewares = jsonServer.defaults();
 
 // CORS per permettere chiamate dal frontend React (porta 3000)
 server.use((req, res, next) => {
@@ -28,8 +26,6 @@ server.use((req, res, next) => {
 // Middleware per parsing JSON
 server.use(jsonServer.bodyParser);
 server.use(middlewares);
-
-// CUSTOM ROUTES EDUCATIVE
 
 /**
  * Endpoint di LOGIN semplificato
@@ -66,76 +62,14 @@ server.post('/auth/login', (req, res) => {
 });
 
 /**
- * Endpoint per ottenere dashboard dati dello studente
- * GET /dashboard/:studenteId
- * Aggrega dati da più tabelle
+ * Middleware per logging delle richieste 
+ * TODO: Implementare middleware di autenticazione quando necessario
  */
-server.get('/dashboard/:studenteId', (req, res) => {
-  const studenteId = parseInt(req.params.studenteId);
-  const db = router.db;
-  
-  console.log('📊 Richiesta dashboard per studente:', studenteId);
-  
-  // Raccogli dati da più tabelle
-  const voti = db.get('voti').filter({ studenteId }).value();
-  const compiti = db.get('compiti').filter({ studenteId }).value();
-  const assenze = db.get('assenze').filter({ studenteId }).value();
-  const comunicazioni = db.get('comunicazioni').value();
-  
-  // Calcola statistiche
-  const mediaGenerale = voti.length > 0 
-    ? (voti.reduce((sum, v) => sum + v.voto, 0) / voti.length).toFixed(2)
-    : 0;
-    
-  const compitiInScadenza = compiti.filter(c => 
-    !c.completato && new Date(c.dataConsegna) > new Date()
-  ).length;
-  
-  const comunicazioniNonLette = comunicazioni.filter(c => !c.letta).length;
-  
-  res.json({
-    statistiche: {
-      mediaGenerale: parseFloat(mediaGenerale),
-      totaleVoti: voti.length,
-      compitiInScadenza,
-      assenzeTotali: assenze.length,
-      comunicazioniNonLette
-    },
-    ultimiVoti: voti.slice(-5).reverse(), // Ultimi 5 voti
-    prossimiCompiti: compiti.filter(c => !c.completato).slice(0, 3),
-    comunicazioniRecenti: comunicazioni.slice(-3).reverse()
-  });
-});
-
-/**
- * Endpoint per voti con join di materie
- * GET /voti-completi/:studenteId
- * Include nome materia nei voti
- */
-server.get('/voti-completi/:studenteId', (req, res) => {
-  const studenteId = parseInt(req.params.studenteId);
-  const db = router.db;
-  
-  const voti = db.get('voti').filter({ studenteId }).value();
-  const materie = db.get('materie').value();
-  
-  // Join manuale tra voti e materie
-  const votiConMaterie = voti.map(voto => ({
-    ...voto,
-    materia: materie.find(m => m.id === voto.materiaId)
-  }));
-  
-  res.json(votiConMaterie);
-});
-
-/**
- * Middleware per logging delle richieste (educativo)
- */
-server.use((req, res, next) => {
-  const timestamp = new Date().toLocaleString('it-IT');
-  console.log(`[${timestamp}] ${req.method} ${req.url}`);
-  next();
-});
+// server.use((req, res, next) => {
+//   const timestamp = new Date().toLocaleString('it-IT');
+//   console.log(`[${timestamp}] ${req.method} ${req.url}`);
+//   next();
+// });
 
 // Usa le routes predefinite di JSON Server per tutto il resto
 server.use('/api', router);
@@ -143,14 +77,13 @@ server.use('/api', router);
 // Avvia server
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
-  console.log('🚀 JSON Server avviato su porta', PORT);
-  console.log('📖 API docs: http://localhost:' + PORT);
-  console.log('🎯 Database: http://localhost:' + PORT + '/api');
+  console.log('🚀 API Server avviato su porta', PORT);
+  console.log('🎯 API Base: http://localhost:' + PORT + '/api');
   console.log('🔐 Login endpoint: POST http://localhost:' + PORT + '/auth/login');
-  console.log('📊 Dashboard endpoint: GET http://localhost:' + PORT + '/dashboard/:id');
-  console.log('\n📚 Esempi di utilizzo:');
+  console.log('\n📚 Esempi di utilizzo API:');
   console.log('- GET /api/studenti - Lista studenti');
   console.log('- GET /api/materie - Lista materie');
   console.log('- GET /api/voti?studenteId=1 - Voti dello studente 1');
   console.log('- POST /auth/login - Login con username/password');
+  console.log('\n💡 Per l\'interfaccia React: npm start (porta 3000)');
 });
