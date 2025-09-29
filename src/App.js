@@ -9,9 +9,11 @@ import {
   Typography, 
   Box, 
   Paper,
-  Chip
+  Chip,
+  ThemeProvider
 } from '@mui/material';
 import { School as SchoolIcon } from '@mui/icons-material';
+import theme from './theme';
 
 // TODO: Importare useState da 'react' - https://react.dev/reference/react/useState
 // TODO: Importare LoginForm da './components/LoginForm'
@@ -50,10 +52,10 @@ function App() {
   };
 
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       {/* TODO: Sostituire con: {!user ? <LoginForm onLoginSuccess={handleLogin} /> : <WelcomePage user={user} onLogout={handleLogout} />} */}
       <Welcome />
-    </div>
+    </ThemeProvider>
   );
 }
 

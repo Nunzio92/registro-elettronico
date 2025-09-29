@@ -80,10 +80,4 @@ server.listen(PORT, () => {
   console.log('🚀 API Server avviato su porta', PORT);
   console.log('🎯 API Base: http://localhost:' + PORT + '/api');
   console.log('🔐 Login endpoint: POST http://localhost:' + PORT + '/auth/login');
-  console.log('\n📚 Esempi di utilizzo API:');
-  console.log('- GET /api/studenti - Lista studenti');
-  console.log('- GET /api/materie - Lista materie');
-  console.log('- GET /api/voti?studenteId=1 - Voti dello studente 1');
-  console.log('- POST /auth/login - Login con username/password');
-  console.log('\n💡 Per l\'interfaccia React: npm start (porta 3000)');
 });

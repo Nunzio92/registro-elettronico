@@ -26,6 +26,7 @@ npm start
 
 ## 📚 **Cosa Imparerai**
 
+- ✅ **Material-UI Theming** per personalizzazione interfaccia
 - ✅ **useState** per gestione stato locale
 - ✅ **Form controllati** con Material-UI
 - ✅ **Chiamate API** per autenticazione
@@ -37,6 +38,7 @@ npm start
 ```
 src/
 ├── App.js              # Componente principale con stato utente
+├── theme.js            # Configurazione tema Material-UI
 ├── components/
 │   ├── LoginForm.js    # Form di login
 │   └── WelcomePage.js  # Area riservata
@@ -50,6 +52,24 @@ src/
 - **Password:** `password`
 
 ## 🚀 **Piano di Implementazione**
+
+### **Step 0: Customizzazione Tema Material-UI (30 min)** 🎨
+Prima di iniziare con la logica, familiarizza con la personalizzazione dell'interfaccia:
+
+1. **Esplora il file `src/theme.js`** - Contiene il tema Material-UI personalizzato
+2. **Cambia i colori primari e secondari** in `palette.primary.main` e `palette.secondary.main`
+3. **Modifica il `borderRadius`** dei componenti (Button, Paper, TextField)
+4. **Sperimenta con `fontFamily`** e dimensioni in `typography`
+5. **Salva e osserva** i cambiamenti in tempo reale nel browser
+
+**🎯 Obiettivo:** Comprendere come Material-UI permette di personalizzare l'aspetto dell'intera applicazione con poche righe di codice.
+
+**📚 Riferimenti:**
+- [Material-UI Theming](https://mui.com/material-ui/customization/theming/) - Guida ufficiale
+- [Color Tool](https://material.io/resources/color/) - Generatore palette colori
+- [Typography](https://mui.com/material-ui/customization/typography/) - Personalizzazione font
+
+---
 
 ### **Step 1: API Service - Chiamate Backend (1-2 ore)**
 1. Definire [`API_BASE_URL`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) in `api.js`
@@ -104,8 +124,9 @@ src/
 
 ## ⏱️ **Tempo Stimato**
 
-**5-7 ore** per principianti (1-2 giorni di lavoro)
+**5.5-7.5 ore** per principianti (1-2 giorni di lavoro)
 
+- **Step 0 (Tema):** 30 min
 - **Step 1 (API):** 1-2 ore
 - **Step 2 (App.js):** 1-2 ore  
 - **Step 3 (LoginForm):** 2-3 ore
