@@ -44,34 +44,34 @@ const theme = createTheme({
       fontWeight: 500,
     },
   },
-  components: {
-    // Personalizzazioni componenti
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-          textTransform: 'none', // Rimuove MAIUSCOLO automatico
-          fontWeight: 500,
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          borderRadius: 12,
-        },
-      },
-    },
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          '& .MuiOutlinedInput-root': {
-            borderRadius: 8,
-          },
-        },
-      },
-    },
-  },
+  // components: {
+  //   // Personalizzazioni componenti
+  //   MuiButton: {
+  //     styleOverrides: {
+  //       root: {
+  //         borderRadius: 8,
+  //         textTransform: 'none', // Rimuove MAIUSCOLO automatico
+  //         fontWeight: 500,
+  //       },
+  //     },
+  //   },
+  //   MuiPaper: {
+  //     styleOverrides: {
+  //       root: {
+  //         borderRadius: 12,
+  //       },
+  //     },
+  //   },
+  //   MuiTextField: {
+  //     styleOverrides: {
+  //       root: {
+  //         '& .MuiOutlinedInput-root': {
+  //           borderRadius: 8,
+  //         },
+  //       },
+  //     },
+  //   },
+  // },
 });
 
 export default theme;
