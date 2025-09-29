@@ -1,14 +1,6 @@
 /**
- * 🎯 STARTER TEMPLATE: Registro Elettronico con Material-UI
- * 
- * Questo è il tuo punto di partenza! 
- * Costruirai un'app React completa step-by-step usando Material-UI.
- * 
- * 📚 Cosa imparerai:
- * ✅ Componenti React con Material-UI
- * ✅ useState per dati interattivi  
- * ✅ Props e comunicazione tra componenti
- * ✅ Liste dinamiche e form controllati
+ * 🔐 App.js - Componente Principale
+ * TODO: Implementare useState e conditional rendering per login
  */
 
 import React from 'react';
@@ -21,6 +13,10 @@ import {
 } from '@mui/material';
 import { School as SchoolIcon } from '@mui/icons-material';
 
+// TODO: Importare useState da 'react' - https://react.dev/reference/react/useState
+// TODO: Importare LoginForm da './components/LoginForm'
+// TODO: Importare WelcomePage da './components/WelcomePage'
+
 // Componente di benvenuto con Material-UI
 const Welcome = () => (
   <Container maxWidth="md" sx={{ py: 4 }}>
@@ -31,52 +27,31 @@ const Welcome = () => (
         🚀 Registro Elettronico
       </Typography>
       
-      <Typography variant="h6" color="text.secondary" paragraph>
-        Benvenuto nel corso React! Costruirai questa app step-by-step.
+      <Typography variant="body1" color="text.secondary" paragraph>
+        Implementa il sistema di login seguendo i TODO nei file.
       </Typography>
       
-      <Box sx={{ mt: 3, mb: 3 }}>
-        <Chip 
-          label="✅ Material-UI Setup Completato" 
-          color="success" 
-          sx={{ mr: 1, mb: 1 }} 
-        />
-        <Chip 
-          label="🎯 Pronto per Step 1" 
-          color="primary" 
-          sx={{ mr: 1, mb: 1 }} 
-        />
-      </Box>
-      
-      <Paper sx={{ p: 3, bgcolor: 'grey.50', mt: 3 }}>
-        <Typography variant="h6" gutterBottom>
-          📋 Il Tuo Piano di Sviluppo:
-        </Typography>
-        <Box component="ol" sx={{ textAlign: 'left', pl: 2 }}>
-          <Typography component="li" sx={{ mb: 1 }}>
-            <strong>Step 1:</strong> Crea il componente StudenteCard
-          </Typography>
-          <Typography component="li" sx={{ mb: 1 }}>
-            <strong>Step 2:</strong> Aggiungi useState per interattività
-          </Typography>
-          <Typography component="li" sx={{ mb: 1 }}>
-            <strong>Step 3:</strong> Crea lista dinamica di studenti
-          </Typography>
-          <Typography component="li" sx={{ mb: 1 }}>
-            <strong>Step 4:</strong> Implementa form per aggiungere studenti
-          </Typography>
-          <Typography component="li">
-            <strong>Step 5:</strong> Collega tutto insieme!
-          </Typography>
-        </Box>
-      </Paper>
+      <Typography variant="body2" sx={{ mt: 2, p: 2, bgcolor: 'info.light', borderRadius: 1 }}>
+        <strong>Credenziali test:</strong> studente / password
+      </Typography>
     </Paper>
   </Container>
 );
 
 function App() {
+  // TODO: const [user, setUser] = useState(null);
+  
+  const handleLogin = (userData) => {
+    // TODO: setUser(userData);
+  };
+
+  const handleLogout = () => {
+    // TODO: setUser(null);
+  };
+
   return (
     <div>
+      {/* TODO: Sostituire con: {!user ? <LoginForm onLoginSuccess={handleLogin} /> : <WelcomePage user={user} onLogout={handleLogout} />} */}
       <Welcome />
     </div>
   );
