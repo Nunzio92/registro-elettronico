@@ -72,11 +72,11 @@ Prima di iniziare con la logica, familiarizza con la personalizzazione dell'inte
 ---
 
 ### **Step 1: LoginForm - Form Base**
-1. Importare [`useState`](https://react.dev/reference/react/useState), [`Paper`](https://mui.com/material-ui/react-paper/), [`TextField`](https://mui.com/material-ui/react-text-field/), [`Button`](https://mui.com/material-ui/react-button/)
-2. Aggiungere stato: `const [formData, setFormData] = useState({ username: '', password: '' })`
-3. Implementare [`handleInputChange`](https://react.dev/learn/reacting-to-input-with-state) per aggiornare lo stato
-4. Creare form JSX con Paper, TextField per username/password e Button
-5. **Test:** Verificare che i campi si aggiornino digitando
+1. **Importare componenti:** [`useState`](https://react.dev/reference/react/useState) da 'react' e [`Paper`](https://mui.com/material-ui/react-paper/), [`TextField`](https://mui.com/material-ui/react-text-field/), [`Button`](https://mui.com/material-ui/react-button/), [`Box`](https://mui.com/material-ui/react-box/) da '@mui/material'
+2. **Stato del form:** Creare stato `formData` inizializzato con oggetto contenente username e password vuoti
+3. **Handler input:** Implementare `handleInputChange` che usa spread operator per aggiornare il campo specifico
+4. **Struttura JSX:** Creare un Paper con elevation={3}, Typography per il titolo, `<Box component="form" onSubmit={handleSubmit}>`, due TextField (username e password) e un Button submit
+5. **Test:** Verificare che i campi si aggiornino digitando e che il form sia visivamente corretto
 
 ### **Step 2: API Service - Chiamate Backend**
 1. Definire [`API_BASE_URL`](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch) in `api.js`
@@ -85,11 +85,11 @@ Prima di iniziare con la logica, familiarizza con la personalizzazione dell'inte
 4. **Test:** Usare `console.log` nel form per testare la funzione login
 
 ### **Step 3: Collegare Form e API**
-1. Importare `login`, `getErrorMessage` da `../services/api` nel LoginForm
-2. Aggiungere stato per errori: `const [error, setError] = useState('')`
-3. Implementare `handleSubmit` che chiama `login(formData.username, formData.password)`
-4. Aggiungere componente [`Alert`](https://mui.com/material-ui/react-alert/) per mostrare errori
-5. **Test:** Provare login con credenziali corrette/sbagliate
+1. **Importare API:** `login`, `getErrorMessage` da `../services/api` e [`Alert`](https://mui.com/material-ui/react-alert/) da '@mui/material'
+2. **Stato errori:** Creare stato `error` per gestire messaggi di errore
+3. **Handler submit:** Implementare funzione async che previene default, resetta errori, chiama login in try/catch e gestisce successo/errore
+4. **Mostrare errori:** Aggiungere Alert condizionale che si mostra solo se c'è un errore
+5. **Test:** Provare login con credenziali corrette (`studente/password`) e sbagliate
 
 ### **Step 4: App.js - Gestione Stato**
 1. Importare [`useState`](https://react.dev/reference/react/useState), `LoginForm`, `WelcomePage`
