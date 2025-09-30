@@ -1,11 +1,10 @@
 /**
- * 🎨 Theme Material UI - Configurazione Statica
- * Setup semplice per principianti
+ * 🎨 Theme Material UI
  */
 
 import { createTheme } from '@mui/material/styles';
 
-// Tema personalizzato per il registro elettronico
+// Tema custom
 const theme = createTheme({
   palette: {
     primary: {
