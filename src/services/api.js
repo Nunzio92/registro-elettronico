@@ -11,7 +11,7 @@
  */
 
 // TODO: Definire URL base del backend
-// const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = 'http://localhost:3001';
 
 /**
  * TODO: Implementare funzione login
@@ -38,55 +38,64 @@ export const login = async (username, password) => {
   // - body: JSON.stringify({ username, password })
   // TODO: Controllare response.ok e gestire errori
   // TODO: Ritornare response.json()
+
+  const response = await fetch(API_BASE_URL + '/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ username, password })
+  })
+
+  if (!response.ok) {
+    const error = new Error('HTTP Error');
+    error.status = response.status;
+    throw error;
+  }
+
+  return response.json();
   
-  console.log('TODO: Implementare login API');
-  throw new Error('Login non ancora implementato');
+  // console.log('TODO: Implementare login API');
+  // throw new Error('Login non ancora implementato');
 };
 
 /**
  * TODO: Implementare gestione errori user-friendly
  * 
- * Deve controllare error.message per:
- * - 'Failed to fetch' → Errore di connessione
- * - '401' → Credenziali sbagliate
- * - '404' → Risorsa non trovata
- * - '500' → Errore server
+ * Deve controllare error.status per status HTTP:
+ * - 401 → 'Credenziali non valide'
+ * - 404 → 'Servizio non trovato'
+ * - 500 → 'Errore del server'
+ * - undefined (errore di rete) → 'Errore di connessione'
  * 
- * 📖 Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes
- * 📖 Conditional: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
+ * 📖 Docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
+ * 📖 Switch: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
  * 
- * @param {Error} error - Errore catturato
- * @returns {string} Messaggio di errore comprensibile
+ * @param {Error} error - Errore catturato dalla fetch (con proprietà status se HTTP)
+ * @returns {string} Messaggio di errore comprensibile per l'utente
  */
 export const getErrorMessage = (error) => {
-  // TODO: Usare if/else o switch per controllare error.message
-  // TODO: Ritornare messaggi user-friendly per ogni tipo di errore
-  // TODO: Fallback per errori sconosciuti
+  // TODO: Usare if/else o switch per controllare error.status
+  // TODO: Gestire caso quando error.status è undefined (errore di rete)
+  // TODO: Ritornare messaggi comprensibili per l'utente
   
   console.log('TODO: Implementare gestione errori');
   return 'Errore generico';
 };
 
 /* 
-📝 ESEMPI DI IMPLEMENTAZIONE:
+📝 HINT E SUGGERIMENTI:
 
-// Esempio fetch POST:
-const response = await fetch(url, {
+// Esempio struttura fetch POST:
+const response = await fetch(URL, {
   method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({ username, password })
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
 });
 
-// Esempio controllo errori:
-if (!response.ok) {
-  throw new Error(`HTTP ${response.status}`);
-}
-
-// Esempio gestione errori:
-if (error.message.includes('Failed to fetch')) {
-  return 'Errore di connessione';
+// Hint: Controllo condizionale per numeri
+if (error.status === 401) {
+  // caso specifico
 }
 
 📖 Tutorial completo: https://javascript.info/fetch
