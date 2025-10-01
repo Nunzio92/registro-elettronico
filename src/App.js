@@ -26,7 +26,7 @@ const Welcome = () => (
       <SchoolIcon sx={{ fontSize: 60, color: 'primary.main', mb: 2 }} />
       
       <Typography variant="h3" component="h1" gutterBottom color="primary">
-        🚀 Registro Elettronico
+        🚀 Registro Elettronico With a change!
       </Typography>
       
       <Typography variant="body1" color="text.secondary" paragraph>
